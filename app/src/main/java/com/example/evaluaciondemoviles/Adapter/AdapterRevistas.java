@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.evaluaciondemoviles.R;
 import com.example.evaluaciondemoviles.Model.Revistas;
+import com.example.evaluaciondemoviles.R;
 
 import java.util.ArrayList;
 

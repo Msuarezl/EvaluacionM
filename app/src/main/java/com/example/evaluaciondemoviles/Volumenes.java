@@ -3,26 +3,22 @@ package com.example.evaluaciondemoviles;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ListView;
 
-import com.example.evaluaciondemoviles.Adapter.AdapterRevistas;
-import com.example.evaluaciondemoviles.Adapter.AdapterVolumenes;
-import com.example.evaluaciondemoviles.Model.Revistas;
+import com.example.evaluaciondemoviles.Holder.HolderVolumen;
 import com.example.evaluaciondemoviles.Model.VolumenesModel;
 import com.example.evaluaciondemoviles.WebServices.Asynchtask;
 import com.example.evaluaciondemoviles.WebServices.WebService;
+import com.mindorks.placeholderview.PlaceHolderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Volumenes extends AppCompatActivity implements Asynchtask {
     String id = "";
-    ArrayList<VolumenesModel> volumenesModelsList = new ArrayList<>();
-    ListView listViewVolumenes;
+    PlaceHolderView listViewVolumenes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +44,10 @@ public class Volumenes extends AppCompatActivity implements Asynchtask {
             volumenesModel.setTitle(VolumenesJS.getJSONObject(i).getString("title"));
             volumenesModel.setYear(VolumenesJS.getJSONObject(i).getString("year"));
             volumenesModel.setCover(VolumenesJS.getJSONObject(i).getString("cover"));
-            volumenesModelsList.add(volumenesModel);
+            listViewVolumenes.addView(new HolderVolumen(getApplicationContext(),volumenesModel));
+
         }
-       AdapterVolumenes adapterBusiness = new AdapterVolumenes(Volumenes.this, (ArrayList<VolumenesModel>) volumenesModelsList);
-        listViewVolumenes.setAdapter(adapterBusiness);
+     //  AdapterVolumenes adapterBusiness = new AdapterVolumenes(Volumenes.this, (ArrayList<VolumenesModel>) volumenesModelsList);
+       // listViewVolumenes.setAdapter(adapterBusiness);
     }
 }

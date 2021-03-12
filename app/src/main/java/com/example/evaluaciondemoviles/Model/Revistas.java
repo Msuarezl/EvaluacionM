@@ -1,20 +1,11 @@
 package com.example.evaluaciondemoviles.Model;
 
-public class Revistas {
-   private String portada;
-   private String journal_id;
-   private String descripccion;
-   private String name;
+public class Revistas { private String portada;
+    private String journal_id;
+    private String descripccion;
+    private String name;
     private String journalThumbnail;
     private String abbreviation;
-
-    public String getAbbreviation() {
-        return abbreviation;
-    }
-
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
-    }
 
     public String getPortada() {
         return portada;
@@ -54,5 +45,13 @@ public class Revistas {
 
     public void setJournalThumbnail(String journalThumbnail) {
         this.journalThumbnail = journalThumbnail;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 }

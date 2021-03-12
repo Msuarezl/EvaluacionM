@@ -7,15 +7,9 @@
     >
 
     <LinearLayout
-        android:id="@+id/liPrincipal"
         android:layout_width="match_parent"
         android:layout_height="130dp">
 
-        <ImageView
-            android:id="@+id/imaPortada"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,19 +17,26 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/idTitulo"
+                android:id="@+id/idTituloArt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descriccion" />
+                android:text="Titulo"
+                />
 
             <TextView
-                android:id="@+id/idcontenido"
+                android:id="@+id/idAutores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Descriccion" />
+            <Button
+                android:id="@+id/iddescargar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="PDF"
+                />
+
         </LinearLayout>
     </LinearLayout>
 
 
 </LinearLayout>
-

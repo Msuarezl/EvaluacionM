@@ -2,28 +2,23 @@ package com.example.evaluaciondemoviles;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
-import com.example.evaluaciondemoviles.Adapter.AdapterRevistas;
 import com.example.evaluaciondemoviles.Model.Revistas;
+import com.example.evaluaciondemoviles.Holder.RevistasHolder;
 import com.example.evaluaciondemoviles.WebServices.Asynchtask;
 import com.example.evaluaciondemoviles.WebServices.WebService;
+import com.mindorks.placeholderview.PlaceHolderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity  implements Asynchtask {
 
-    ArrayList<Revistas> revistasList = new ArrayList<>();
-    ListView listView;
+    PlaceHolderView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +28,7 @@ public class MainActivity extends AppCompatActivity  implements Asynchtask {
         Map<String, String> datos = new HashMap<String, String>();
         WebService ws= new WebService("https://revistas.uteq.edu.ec/ws/journals.php", datos, this, this);
         ws.execute("");
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(MainActivity.this, Volumenes.class).putExtra("id",revistasList.get(position).getJournal_id()));
-            }
-        });
+
     }
 
     @Override
@@ -54,10 +44,10 @@ public class MainActivity extends AppCompatActivity  implements Asynchtask {
             revistas.setAbbreviation(revistasJS.getJSONObject(i).getString("abbreviation"));
             revistas.setJournalThumbnail(revistasJS.getJSONObject(i).getString("journalThumbnail"));
             revistas.setPortada(revistasJS.getJSONObject(i).getString("portada"));
-            revistasList.add(revistas);
+            listView.addView(new RevistasHolder(getApplicationContext(),revistas));
         }
-        AdapterRevistas adapterBusiness = new AdapterRevistas(MainActivity.this, (ArrayList<Revistas>) revistasList);
-        listView.setAdapter(adapterBusiness);
+
+
 
 
     }
