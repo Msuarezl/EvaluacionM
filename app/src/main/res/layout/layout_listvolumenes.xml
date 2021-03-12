@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imaPortada"
+                android:id="@+id/imaPortadaVolumen"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -24,16 +24,34 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/idTitulo"
+                    android:id="@+id/idVolumen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descriccion"/>
+                    android:text="Volumen"/>
                 <TextView
-                    android:id="@+id/idcontenido"
+                    android:id="@+id/idNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descriccion"
+                    android:text="Numero"
                     />
+                <TextView
+                    android:id="@+id/idyear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Year"
+                    />
+                <TextView
+                    android:id="@+id/iddatapublisher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="datapublisher"
+                    />
+                <TextView
+                android:id="@+id/iddoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doi"
+                />
             </LinearLayout>
         </LinearLayout>
 
