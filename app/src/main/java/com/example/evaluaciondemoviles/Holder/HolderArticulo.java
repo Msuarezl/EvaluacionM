@@ -1,7 +1,9 @@
 package com.example.evaluaciondemoviles.Holder;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.text.Html;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 @Animate(Animate.CARD_TOP_IN_DESC)
 @NonReusable
@@ -38,9 +48,52 @@ public class HolderArticulo {
 
     @Click(R.id.iddescargar)
     public void clicItemVolumen(){
-       // mcontext.startActivity(new Intent(mcontext, Articulos.class).putExtra("id",volumeneslist.getIssue_id()));
+        try {
+            JSONArray js =   jsonObject.getJSONArray("galeys");
+            for(int i=0;i<js.length();i++)
+            {
+              String url = js.getJSONObject(i).getString("UrlViewGalley");
+                DescargarPDF(url);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // mcontext.startActivity(new Intent(mcontext, Articulos.class).putExtra("id",volumeneslist.getIssue_id()));
 
     }
+
+
+    public void DescargarPDF(String urllink) {
+        try {
+
+            URL url = new URL(urllink);
+            HttpURLConnection c = (HttpURLConnection) url.openConnection();
+            c.setRequestMethod("GET");
+            c.setDoOutput(true);
+            c.connect();
+
+            String Path = Environment.getExternalStorageDirectory() + "/download/";
+            Log.v("PdfManager", "PATH: " + Path);
+            File file = new File(Path);
+            file.mkdirs();
+            FileOutputStream fos = new FileOutputStream("tusitio.pdf");
+
+            InputStream is = c.getInputStream();
+
+            byte[] buffer = new byte[702];
+            int len1 = 0;
+            while ((len1 = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, len1);
+            }
+            fos.close();
+            is.close();
+        } catch (IOException e) {
+            Log.d("PdfManager", "Error: " + e);
+        }
+        Log.v("PdfManager", "Check: ");
+    }
+
+
 
     public HolderArticulo(Context mcontext, JSONObject jsonObject) {
         this.mcontext = mcontext;
