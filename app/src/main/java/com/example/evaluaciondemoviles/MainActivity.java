@@ -1,19 +1,20 @@
 package com.example.evaluaciondemoviles;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.evaluaciondemoviles.Adapter.AdapterRevistas;
+import com.example.evaluaciondemoviles.Model.Revistas;
 import com.example.evaluaciondemoviles.WebServices.Asynchtask;
 import com.example.evaluaciondemoviles.WebServices.WebService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +33,12 @@ public class MainActivity extends AppCompatActivity  implements Asynchtask {
         Map<String, String> datos = new HashMap<String, String>();
         WebService ws= new WebService("https://revistas.uteq.edu.ec/ws/journals.php", datos, this, this);
         ws.execute("");
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(MainActivity.this, Volumenes.class).putExtra("id",revistasList.get(position).getJournal_id()));
+            }
+        });
     }
 
     @Override

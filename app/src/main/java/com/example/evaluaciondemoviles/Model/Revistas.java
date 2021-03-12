@@ -1,4 +1,4 @@
-package com.example.evaluaciondemoviles;
+package com.example.evaluaciondemoviles.Model;
 
 public class Revistas {
    private String portada;
